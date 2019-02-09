@@ -1,0 +1,128 @@
+//queue using stak
+#include <iostream>
+
+using namespace std;
+
+class node{
+ 
+  public:
+  int data;
+  node * next;
+  node(){
+  	data = 0;
+  	next=NULL;
+  }
+};
+
+class stack{
+	public:
+	node * head;
+	//constructor
+	stack(){
+	head=NULL;
+	
+	}
+    
+	//insert
+    
+    
+	void push( int value){
+    node * temp= new node;
+    
+    if(head==NULL){
+   	 head=temp;
+   	 head->data=value;
+   	 head->next=NULL;
+
+    }
+    else{     
+   	 temp->data=value;
+   	 temp->next=head;
+   	 head=temp;
+     }
+    
+   	 
+	}
+	//Deletes the element at the end of the list.
+	int pop(){
+        node *temp;
+        node *current=head;
+         if(current==NULL)
+            cout<<"underflow";
+        else{
+        temp=head;
+        head=head->next;
+        //delete temp;
+        }
+        return temp->data;
+	}
+    
+	
+
+	//display
+	void disp(){
+    	node *current=head;
+    	//loop to keep moving to next node
+    	while(current!=NULL){
+   	 
+    	cout<<current->data<<"-<";
+    	current=current->next;//the access moves to next node
+    
+    	}
+    	cout<<endl;
+	 
+	}
+	//to count
+	void count(){
+    	node *current=head;
+    	int i=0;
+    	//loop to keep moving to next node
+    	while(current!=NULL){
+    	i++;
+    	current=current->next;//the access moves to next node
+    
+    	}
+    	cout<<"the total no. of elements in the linkes list is"<<i<<endl;
+   	 
+	}
+    
+};
+
+
+int main()
+{
+   
+	stack s1;//object 1
+	stack s2;//object2
+	//pushing objects in stack s1
+	
+    s1.push(1);
+    s1.push(2);
+    s1.push(3);
+    cout<<"s1:";
+    s1.disp();//dislaying the first stack
+    s2.push(s1.pop());//pushing the popped value of s1 in s2
+    cout<<"s2:";
+    s2.disp();
+    s2.push(s1.pop());//pushing the popped value of s1 in s2
+    cout<<"s2:";
+    s2.disp();
+    s2.push(s1.pop());//pushing the popped value of s1 in s2
+    cout<<"s2:";
+    s2.disp();
+    s2.pop();//popping element from s2
+    cout<<"s2:";
+    s2.disp();
+    s2.pop();//popping element from s2
+    cout<<"s2:";
+    s2.disp();
+    s2.pop();//popping element from s2
+    cout<<"s2:";
+    s2.disp();
+    s2.pop();//popping element from s2
+    
+    s2.disp();
+     
+   return 0;
+}
+
