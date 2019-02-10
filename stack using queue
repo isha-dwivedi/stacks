@@ -1,0 +1,166 @@
+//stack using queue
+
+#include<iostream>
+using namespace std;
+class node{
+  public:
+  int data;
+  node * next;
+  node(){
+      data=0;
+      next=NULL;
+  }
+    
+};
+ class queue{
+     public:
+     node * front;
+     node * rear;
+     queue(){
+         front=NULL;
+         rear=NULL;
+     }
+ //insert
+    
+void enq( int value){
+    node * temp= new node;
+    
+    if(rear==NULL){
+      temp->data=value;  
+   	 rear=temp;
+   	 front=rear;
+   	
+   	 
+   
+    }
+    else{  
+        
+   	 temp->data=value;
+   	 temp->next=rear;
+   	 rear=temp;
+   	  
+     }
+    
+   	 
+	}
+	//Deletes the element at the end of the list.
+	int deq(){
+        node *temp;
+        node * current=rear;
+        
+       
+         if(front==NULL)
+            cout<<"underflow";
+        else{
+            while(current->next!=front && current->next!=NULL){
+                    current=current->next;}
+            if(current==front)
+            {
+                temp=front;
+                front=rear=NULL;
+                //cout<<"a:"<<temp->data<<endl;
+                return temp->data;
+            }
+            else{
+                
+                
+                    temp=current->next;
+                    current->next=NULL;
+                    front=current;
+                     
+                   // cout<<"b"<<temp->data<<endl;
+                   return temp->data;
+                }
+        
+        }
+        
+	}
+    
+	
+
+	//display
+	void disp(){
+    	node *current=rear;
+    	//loop to keep moving to next node
+    	while(current!=NULL){
+   	 
+    	cout<<current->data<<"-<";
+    	current=current->next;//the access moves to next node
+    
+    	}
+    	cout<<endl;
+	 
+	}
+	//to count
+	int count(){
+    	node *current=rear;
+    	int i=0;
+    	//loop to keep moving to next node
+    	while(current!=NULL){
+    	i++;
+    	current=current->next;//the access moves to next node
+    
+    	}
+    	
+    	return i;
+   	 
+	}
+    
+};
+
+class stack{
+    public:
+    queue s1;//object 1
+	queue s2;
+	void push(){
+	    s1.enq(1);
+        s1.enq(2);
+        s1.enq(3);
+        s1.enq(4);
+	    
+	}
+	void pop(){
+	    int x=s1.count();
+	    
+	    for(int j=0; j<x;j++){
+	        
+	        if(j==x-1)
+	        {s1.deq();    
+	         
+	    for(int i=0;i<x-1;i++){
+	        s1.enq(s2.deq());
+	        cout<<"s1:";
+	        s1.disp();
+	    }}
+	    else{
+	    s2.enq(s1.deq());
+	        cout<<"s2:";
+	        s2.disp();
+	        }
+	    
+	}
+	}
+	void display(){
+	    s1.disp();
+	}
+    
+    
+    
+    
+};
+
+
+int main()
+{
+   
+stack s;
+s.push();
+s.display();
+s.pop();
+s.display();
+     
+   return 0;
+}
+
+
+
