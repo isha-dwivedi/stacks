@@ -97,6 +97,7 @@ class qu{
 	    
 	}
 	void deq(){
+	    cout<<"deleting the element"<<endl;
 	    int x=s1.count();
 	    
 	    for(int j=0; j<x;j++){
@@ -116,6 +117,7 @@ class qu{
 	}
 	}
 	void display(){
+	    cout<<"queue:";
 	    s1.disp();
 	}
     
