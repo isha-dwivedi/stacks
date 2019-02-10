@@ -1,0 +1,136 @@
+#include <iostream>
+
+using namespace std;
+
+class node{
+  
+  public:
+  int data;
+  node * next;
+  node(){
+      data = 0;
+      next=NULL;
+  }
+};
+
+class LinkedList{
+    public:
+    node * front;
+    node * rear;
+    
+    //constructor
+    LinkedList(){
+    front=NULL;
+    rear=NULL;
+    }
+    
+    //insert
+    
+    
+    void insert( int value){
+    node * temp= new node;
+    if(rear==NULL) //for empty queue
+    {
+     temp->data=value;
+    rear=temp;
+    rear->next=NULL;
+    front=rear;}
+    else        //for non empty queue
+    {
+    temp->data=value;
+    temp->next=rear; //pointing temp to rear
+    rear=temp;    //making temp the new rear
+     }       
+    }
+    
+
+//delete
+
+void Delete(){
+    node * temp;
+    node * current=rear;
+    if(front==NULL)    //queue unerflow
+    cout<<"queue is empty";
+    else{
+    while(current->next!=front && current->next!=NULL){ //moving pointer to last element of queue
+    current=current->next;
+    }
+    if(current==front){ //if only 1 element left in queue
+    front=rear=NULL;
+    delete current;
+    }
+    else{
+    temp=current->next; //we have to delete element next to current
+    current->next=NULL; //we have to make the next element to current null as such no element is there
+    front=current; //making current the front
+    delete temp;}
+}
+}
+
+    //display
+    void display(){
+        node *current=rear;
+        //loop to keep moving to next node
+        while(current!=NULL){
+        
+        cout<<current->data<<"-<";
+        current=current->next;//the access moves to next node 
+    
+        }
+        cout<<endl;
+     
+    }
+    //to count
+    void count(){
+        node *current=rear;
+        int i=0;
+        //loop to keep moving to next node
+        while(current!=NULL){
+        i++;
+        current=current->next;//the access moves to next node 
+    
+        }
+        cout<<"the total no. of elements in the linkes list is"<<i<<endl;
+        
+    }
+    
+};
+
+class stack{
+
+public:
+LinkedList l;
+    void enq(){
+   l.insert(1);
+ l.insert(2);
+ l.insert(3);
+}
+void disp(){ l.display(); }
+ void cnt(){ l.count(); }
+
+void deq(){
+    l.Delete();}
+
+    
+
+
+};
+int main()
+{
+   
+    stack s;
+s.enq();
+s.disp();
+s.cnt();
+s.deq();
+s.disp();
+s.cnt();
+s.deq();
+s.disp();
+s.cnt();
+s.deq();
+s.disp();
+s.cnt();
+s.deq();
+   return 0;
+}
