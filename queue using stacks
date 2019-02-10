@@ -1,32 +1,26 @@
-//queue using stak
-#include <iostream>
-
+#include<iostream>
 using namespace std;
-
 class node{
- 
   public:
   int data;
   node * next;
   node(){
-  	data = 0;
-  	next=NULL;
+      data=0;
+      next=NULL;
   }
+    
 };
-
-class stack{
-	public:
-	node * head;
-	//constructor
-	stack(){
-	head=NULL;
-	
-	}
+ class stk{
+     public:
+     node * head;
+     
+     stk(){
+         
+         head=NULL;
+     }
+ //insert
     
-	//insert
-    
-    
-	void push( int value){
+    void push( int value){
     node * temp= new node;
     
     if(head==NULL){
@@ -43,6 +37,7 @@ class stack{
     
    	 
 	}
+
 	//Deletes the element at the end of the list.
 	int pop(){
         node *temp;
@@ -56,6 +51,7 @@ class stack{
         }
         return temp->data;
 	}
+
     
 	
 
@@ -73,7 +69,7 @@ class stack{
 	 
 	}
 	//to count
-	void count(){
+	int count(){
     	node *current=head;
     	int i=0;
     	//loop to keep moving to next node
@@ -82,9 +78,49 @@ class stack{
     	current=current->next;//the access moves to next node
     
     	}
-    	cout<<"the total no. of elements in the linkes list is"<<i<<endl;
+    	
+    	return i;
    	 
 	}
+    
+};
+
+class qu{
+    public:
+    stk s1;//object 1
+	stk s2;
+	void enq(){
+	    s1.push(1);
+        s1.push(2);
+        s1.push(3);
+        s1.push(4);
+	    
+	}
+	void deq(){
+	    int x=s1.count();
+	    
+	    for(int j=0; j<x;j++){
+	        s2.push(s1.pop());
+	        cout<<"s2:";
+	        s2.disp();
+	        if(j==x-1)
+	        {s2.pop();    
+	         
+	    for(int i=0;i<x-1;i++){
+	        s1.push(s2.pop());
+	        cout<<"s1:";
+	        s1.disp();
+	    }
+	        }
+	    
+	}
+	}
+	void display(){
+	    s1.disp();
+	}
+    
+    
+    
     
 };
 
@@ -92,37 +128,14 @@ class stack{
 int main()
 {
    
-	stack s1;//object 1
-	stack s2;//object2
-	//pushing objects in stack s1
-	
-    s1.push(1);
-    s1.push(2);
-    s1.push(3);
-    cout<<"s1:";
-    s1.disp();//dislaying the first stack
-    s2.push(s1.pop());//pushing the popped value of s1 in s2
-    cout<<"s2:";
-    s2.disp();
-    s2.push(s1.pop());//pushing the popped value of s1 in s2
-    cout<<"s2:";
-    s2.disp();
-    s2.push(s1.pop());//pushing the popped value of s1 in s2
-    cout<<"s2:";
-    s2.disp();
-    s2.pop();//popping element from s2
-    cout<<"s2:";
-    s2.disp();
-    s2.pop();//popping element from s2
-    cout<<"s2:";
-    s2.disp();
-    s2.pop();//popping element from s2
-    cout<<"s2:";
-    s2.disp();
-    s2.pop();//popping element from s2
-    
-    s2.disp();
+qu q;
+q.enq();
+q.display();
+q.deq();
+q.display();
      
    return 0;
 }
+
+
 
